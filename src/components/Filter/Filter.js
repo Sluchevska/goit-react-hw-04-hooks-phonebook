@@ -4,7 +4,7 @@ import { Input, LabelInput } from '../ContactForm/ContactForm.styled';
 const Filter = ({ value, onChange }) => (
   <label>
     <LabelInput>Find contact by name</LabelInput>
-    <Input type="text" value={value} onChange={onChange} />
+    <Input type="text" value={value} onChange={e=>onChange(e.target.value)} onBlur={()=>onChange('')} />
   </label>
 );
 

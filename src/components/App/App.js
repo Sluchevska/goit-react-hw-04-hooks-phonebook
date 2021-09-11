@@ -42,9 +42,14 @@ class App extends React.Component {
       contacts: [newContact, ...prevState.contacts],
     }));
   };
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
+
+  changeFilter = filter => {
+    this.setState({ filter });
   };
+
+  handleBlur = () => {
+    this.setState({filter:''})
+  }
 
   getVisibleContacts = () => {
     const { filter, contacts } = this.state;
@@ -54,11 +59,25 @@ class App extends React.Component {
       contact.name.toLowerCase().includes(normalizedFilter),
     );
   };
+  
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+   }
+  }
+
+  componentDidMount() {
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if(parsedContacts){
+    this.setState({contacts:parsedContacts})}
+
+  }
 
   render() {
     const { filter } = this.state;
@@ -68,7 +87,7 @@ class App extends React.Component {
         <TitleH1>Phonebook</TitleH1>
         <ContactForm onSubmit={this.addContact} />
         <TitleH2>Contacts</TitleH2>
-        <Filter value={filter} onChange={this.changeFilter} />
+        <Filter value={filter} onChange={this.changeFilter} onBlur={ this.handleBlur}/>
         <ContactList
           contacts={this.getVisibleContacts()}
           onRemove={this.deleteContact}
