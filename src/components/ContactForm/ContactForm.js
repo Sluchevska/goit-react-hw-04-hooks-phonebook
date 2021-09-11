@@ -66,12 +66,18 @@ export default function ContactForm() {
   const [number, setNumber] = useState('');
 
   const handleChange = e => {
-    setName(e.target.value);
+    switch (e.target.name){
+      case 'name':
+        setName(e.target.value);
+        break;
+      case 'number':
+        setNumber(e.target.value);
+        break;
+      default:
+        return
+    }
   };
 
-  const handleChangeNumber = e => {
-    setNumber(e.target.value);
-  };
 
   const handleSubmit = e => {
     console.log(e);
@@ -95,7 +101,7 @@ export default function ContactForm() {
           type="tel"
           name="number"
           value={number}
-          onChange={handleChangeNumber}
+          onChange={handleChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
