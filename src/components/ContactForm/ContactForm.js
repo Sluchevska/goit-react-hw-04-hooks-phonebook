@@ -19,10 +19,8 @@ export default function ContactForm({onSubmit}) {
   };
 
   const reset = () => {
-    this.setState({
-      setName: '',
-      setNumber: '',
-    });
+    setName ('');
+    setNumber ('');
   };
 
   const handleSubmit = e => {
