@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 
 import ContactForm from '../ContactForm/ContactForm';
@@ -19,6 +20,16 @@ export default function App() {
   )
   const [filter, setFilter] = useState('')
 
+   useEffect(() => {
+    const currentContacts = JSON.parse(localStorage.getItem('contacts'))
+    currentContacts && setContacts(currentContacts)
+   }, [])
+  
+
+  useEffect(()=>{
+  localStorage.setItem('contacts', JSON.stringify(contacts))
+  },[contacts])
+
     function addContact (name, number)  {
     const doubleName = contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase(),
@@ -39,7 +50,13 @@ export default function App() {
       setContacts(prevContacts =>
         [newContact, ...prevContacts],
       );
+    
+     
   };
+
+ 
+  
+
 
    const changeFilter = e => {
      setFilter( e.currentTarget.value);
@@ -57,6 +74,12 @@ export default function App() {
    const handleBlur = (e) => {
    setFilter('')
     e.currentTarget.value = '';
+   };
+  
+ const deleteContact = contactId => {
+   setContacts(
+     contacts.filter(contact => contact.id !== contactId),
+    );
   };
 
   return (
@@ -71,7 +94,7 @@ export default function App() {
         />
         <ContactList
           contacts={getVisibleContacts()}
-          // onRemove={deleteContact}
+          onRemove={deleteContact}
         />
       </Container>
   )
