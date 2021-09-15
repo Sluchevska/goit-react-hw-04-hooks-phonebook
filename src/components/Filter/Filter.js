@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { Input, LabelInput } from '../ContactForm/ContactForm.styled';
 
-const Filter = ({ value, onChange }) => (
+
+const Filter = ({ value, onChange, onBlur }) => (
   <label>
     <LabelInput>Find contact by name</LabelInput>
-    <Input type="text" value={value} onChange={e=>onChange(e.target.value)} onBlur={()=>onChange('')} />
+    <Input type="text" value={value} onChange={onChange} onBlur={onBlur} />
   </label>
 );
 
