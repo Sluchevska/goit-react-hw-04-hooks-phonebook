@@ -80,15 +80,7 @@ class App extends React.Component {
      parsedContacts &&
       this.setState({ contacts: parsedContacts });
   }
-// const useLocalStorage = (contacts, '')=>{
-//   const[state, setState]=useState(() => {
-//     return JSON.parse(window.localStorage.getItem(contacts))?? ''
-//   })
-  //useEffect(()=>{
-  //window.localStorage.setItem(contacts, JSON.stringify(state))
-  // },[contacts, state])
-  // return [state, setState]
-// }
+
 
   //export default function App(){
   // const[name, setName] = useLocalStorage('name', '')
