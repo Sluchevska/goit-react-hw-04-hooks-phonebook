@@ -77,6 +77,8 @@ export default function ContactForm() {
         return
     }
   };
+  // const[name, setName] = useLocalStorage('name', '')
+  // const[number, setNumber] = useLocalStorage('number', '')
 
 
   const handleSubmit = e => {
