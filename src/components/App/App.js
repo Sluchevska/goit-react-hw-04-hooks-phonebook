@@ -54,6 +54,11 @@ export default function App() {
     );
   };
 
+   const handleBlur = (e) => {
+   setFilter('')
+    e.currentTarget.value = '';
+  };
+
   return (
      <Container>
         <TitleH1>Phonebook</TitleH1>
@@ -62,7 +67,7 @@ export default function App() {
         <Filter
           value={filter}
           onChange={changeFilter}
-          // onBlur={handleBlur}
+          onBlur={handleBlur}
         />
         <ContactList
           contacts={getVisibleContacts()}
