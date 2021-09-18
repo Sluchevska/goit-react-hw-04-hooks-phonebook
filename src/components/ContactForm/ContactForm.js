@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { LabelInput, Input, Button } from './ContactForm.styled';
 
-export default function ContactForm({onSubmit}) {
+export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -18,16 +18,16 @@ export default function ContactForm({onSubmit}) {
     }
   };
 
-  const reset = () => {
-    setName ('');
-    setNumber ('');
+  const resetState = () => {
+    setName('');
+    setNumber('');
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     onSubmit(name, number);
-    reset();
+    resetState();
   };
   return (
     <div>
