@@ -5,7 +5,7 @@ import ContactList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
 import { Container, TitleH1, TitleH2 } from './App.styled';
 
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 export default function App() {
   const [contacts, setContacts] = useState([
